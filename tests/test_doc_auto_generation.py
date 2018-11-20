@@ -324,10 +324,40 @@ y = layer(x)
 ```
 '''}
 
+test_doc2 = {
+    'doc':"""Stochastic gradient descent optimizer.
+
+    Includes support for momentum,
+    learning rate decay, and Nesterov momentum.
+
+    # Arguments
+        lr: float >= 0. Learning rate.
+        momentum: float >= 0. Parameter that accelerates SGD
+            in the relevant direction and dampens oscillations.
+        decay: float >= 0. Learning rate decay over each update.
+        nesterov: boolean. Whether to apply Nesterov momentum.
+    """,
+    'result': '''Stochastic gradient descent optimizer.
+
+Includes support for momentum,
+learning rate decay, and Nesterov momentum.
+
+__Arguments__
+
+- __lr__: float >= 0. Learning rate.
+- __momentum__: float >= 0. Parameter that accelerates SGD
+    in the relevant direction and dampens oscillations.
+- __decay__: float >= 0. Learning rate decay over each update.
+- __nesterov__: boolean. Whether to apply Nesterov momentum.
+'''
+}
 
 def test_doc_lists():
     docstring = autogen.process_docstring(test_doc1['doc'])
     assert docstring == test_doc1['result']
+
+    docstring = autogen.process_docstring(test_doc2['doc'])
+    assert docstring == test_doc2['result']
 
 
 dummy_docstring = """Multiplies 2 tensors (and/or variables) and returns a *tensor*.
